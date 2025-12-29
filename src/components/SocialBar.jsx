@@ -11,26 +11,26 @@ const socialLinks = [
     icon: FaInstagram,
     href: "https://instagram.com/zeanclasses",
     label: "Instagram",
-    color: "hover:bg-pink-500",
-  },
-  {
-    icon: IoMdMail,
-    href: "mailto:info@zeanclassess.com",
-    label: "Email",
-    color: "hover:bg-blue-500",
+    color: "hover:bg-pink-600",
   },
   {
     icon: FaFacebook,
     href: "https://facebook.com/zeanclasses",
     label: "Facebook",
-    color: "hover:bg-blue-600",
+    color: "hover:bg-blue-800",
+  },
+  {
+    icon: IoMdMail,
+    href: "mailto:info@zeanclassess.com",
+    label: "Email",
+    color: "hover:bg-red-600",
   },
 ];
 
 export default function SocialBar() {
   return (
-    <div className="fixed right-0 bottom-24 md:bottom-40 z-40">
-      <div className="flex flex-col gap-2 bg-white shadow-lg rounded-l-lg p-2 border border-gray-200">
+    <div className="fixed right-0 bottom-24 md:bottom-40 z-40 opacity-70">
+      <div className="flex flex-col gap-2 bg-blue-600 shadow-lg rounded-l-lg p-2 border border-blue-200 opacity-100">
         {socialLinks.map((link, index) => {
           const Icon = link.icon;
           return (
@@ -42,7 +42,7 @@ export default function SocialBar() {
               className={`p-3 text-gray-700 transition-colors rounded-lg ${link.color} hover:text-white`}
               aria-label={link.label}
             >
-              <Icon className="h-5 w-5" />
+              <Icon className="h-5 w-5 text-white" />
             </a>
           );
         })}

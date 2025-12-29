@@ -1,36 +1,37 @@
-import { useState } from "react"
-import { Link, useLocation } from "react-router-dom"
-import { Menu, X } from "lucide-react"
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
-import { Button } from "@/components/ui/button"
+import { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { Menu, X } from "lucide-react";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Button } from "@/components/ui/button";
 
 export default function Navbar() {
-  const [open, setOpen] = useState(false)
-  const location = useLocation()
+  const [open, setOpen] = useState(false);
+  const location = useLocation();
 
   const navItems = [
     { path: "/", label: "Home" },
     { path: "/#branches", label: "Branches" },
+    { path: "/gallery", label: "Gallery" },
     { path: "/#about", label: "About" },
     { path: "/apply", label: "Apply" },
-  ]
+  ];
 
   const handleNavClick = (e, path) => {
     if (path.startsWith("/#")) {
-      e.preventDefault()
-      const id = path.substring(2)
+      e.preventDefault();
+      const id = path.substring(2);
       if (location.pathname !== "/") {
         // Navigate to home first, then scroll
-        window.location.href = `/#${id}`
+        window.location.href = `/#${id}`;
       } else {
-        const element = document.getElementById(id)
+        const element = document.getElementById(id);
         if (element) {
-          element.scrollIntoView({ behavior: "smooth" })
+          element.scrollIntoView({ behavior: "smooth" });
         }
       }
     }
-    setOpen(false)
-  }
+    setOpen(false);
+  };
 
   return (
     <nav className="sticky top-0 z-50 w-full border-b bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/80">
@@ -38,7 +39,9 @@ export default function Navbar() {
         <div className="flex h-16 items-center justify-between">
           <Link to="/" className="flex items-center gap-2">
             <span className="text-2xl font-bold text-red-600">ZC</span>
-            <span className="text-lg font-semibold text-gray-900">Zean Classes</span>
+            <span className="text-lg font-semibold text-gray-900">
+              Zean Classes
+            </span>
           </Link>
 
           {/* Desktop Menu */}
@@ -89,6 +92,5 @@ export default function Navbar() {
         </div>
       </div>
     </nav>
-  )
+  );
 }
-

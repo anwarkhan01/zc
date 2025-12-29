@@ -1,19 +1,19 @@
-import { useState, useMemo } from "react"
-import { Link } from "react-router-dom"
-import Navbar from "@/components/Navbar"
-import Footer from "@/components/Footer"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Button } from "@/components/ui/button"
+import { useState, useMemo } from "react";
+import { Link } from "react-router-dom";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Button } from "@/components/ui/button";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select"
-import { CheckCircle2 } from "lucide-react"
+} from "@/components/ui/select";
+import { CheckCircle2 } from "lucide-react";
 
 export default function Apply() {
   const [formData, setFormData] = useState({
@@ -25,89 +25,64 @@ export default function Apply() {
     standard: "",
     degree: "",
     year: "",
-  })
-  const [submitted, setSubmitted] = useState(false)
+  });
+  const [submitted, setSubmitted] = useState(false);
 
   const handleChange = (field, value) => {
-    setFormData((prev) => ({ ...prev, [field]: value }))
-  }
+    setFormData((prev) => ({ ...prev, [field]: value }));
+  };
 
   const resetAcademicFields = () => {
-    handleChange("category", "")
-    handleChange("standard", "")
-    handleChange("degree", "")
-    handleChange("year", "")
-  }
+    handleChange("category", "");
+    handleChange("standard", "");
+    handleChange("degree", "");
+    handleChange("year", "");
+  };
 
   const allowedCategories = useMemo(() => {
     if (formData.branch === "Papdi") {
-      return ["SSC", "HSC"]
+      return ["SSC", "HSC"];
     }
     if (formData.branch === "Manikpur") {
-      return ["SSC", "HSC", "Degree"]
+      return ["SSC", "HSC", "Degree"];
     }
-    return []
-  }, [formData.branch])
+    return [];
+  }, [formData.branch]);
 
   const handleSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
-    let emailBody = `Student Name: ${formData.name}\n`
-    emailBody += `Phone Number: ${formData.phone}\n`
-    emailBody += `Email: ${formData.email}\n`
-    emailBody += `Branch: ${formData.branch}\n`
-    emailBody += `Category: ${formData.category}\n`
+    let emailBody = `Student Name: ${formData.name}\n`;
+    emailBody += `Phone Number: ${formData.phone}\n`;
+    emailBody += `Email: ${formData.email}\n`;
+    emailBody += `Branch: ${formData.branch}\n`;
+    emailBody += `Category: ${formData.category}\n`;
 
     if (formData.category === "SSC") {
-      emailBody += `Standard (SSC): ${formData.standard}\n`
+      emailBody += `Standard (SSC): ${formData.standard}\n`;
     }
 
     if (formData.category === "HSC") {
-      emailBody += `Class (HSC): ${formData.standard}\n`
+      emailBody += `Class (HSC): ${formData.standard}\n`;
     }
 
     if (formData.category === "Degree") {
-      emailBody += `Degree: ${formData.degree}\n`
-      emailBody += `Year: ${formData.year}\n`
+      emailBody += `Degree: ${formData.degree}\n`;
+      emailBody += `Year: ${formData.year}\n`;
     }
 
-    const subject = encodeURIComponent("New Admission Enquiry - Zean Classes")
-    const body = encodeURIComponent(emailBody)
-    window.location.href = `mailto:info@zeanclassess.com?subject=${subject}&body=${body}`
+    const subject = encodeURIComponent("New Admission Enquiry - Zean Classes");
+    const body = encodeURIComponent(emailBody);
+    window.location.href = `mailto:info@zeanclassess.com?subject=${subject}&body=${body}`;
 
-    setSubmitted(true)
-  }
+    setSubmitted(true);
+  };
 
-  if (submitted) {
-    return (
-      <>
-        <Navbar />
-        <div className="min-h-screen bg-gradient-to-br from-red-50 via-white to-blue-50 flex items-center justify-center py-20">
-          <Card className="max-w-md w-full shadow-lg">
-            <CardContent className="p-8 text-center">
-              <CheckCircle2 className="h-16 w-16 text-green-500 mx-auto mb-4" />
-              <h2 className="text-2xl font-bold mb-4 text-gray-900">
-                Thank You!
-              </h2>
-              <p className="text-gray-700 mb-6">
-                Our team will contact you via call or email shortly.
-              </p>
-              <Link to="/">
-                <Button className="bg-red-600 hover:bg-red-700">
-                  Return to Home
-                </Button>
-              </Link>
-            </CardContent>
-          </Card>
-        </div>
-        <Footer />
-      </>
-    )
-  }
+ 
 
   return (
     <>
-      <Navbar />
+  
       <div className="min-h-screen bg-gradient-to-br from-red-50 via-white to-blue-50 py-12">
         <div className="container mx-auto px-4">
           <div className="max-w-2xl mx-auto">
@@ -157,8 +132,8 @@ export default function Apply() {
                     <Select
                       value={formData.branch}
                       onValueChange={(value) => {
-                        handleChange("branch", value)
-                        resetAcademicFields()
+                        handleChange("branch", value);
+                        resetAcademicFields();
                       }}
                       required
                     >
@@ -167,7 +142,9 @@ export default function Apply() {
                       </SelectTrigger>
                       <SelectContent>
                         <SelectItem value="Papdi">Zean at Papdi</SelectItem>
-                        <SelectItem value="Manikpur">Zean at Manikpur</SelectItem>
+                        <SelectItem value="Manikpur">
+                          Zean at Manikpur
+                        </SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
@@ -178,10 +155,10 @@ export default function Apply() {
                       <Select
                         value={formData.category}
                         onValueChange={(value) => {
-                          handleChange("category", value)
-                          handleChange("standard", "")
-                          handleChange("degree", "")
-                          handleChange("year", "")
+                          handleChange("category", value);
+                          handleChange("standard", "");
+                          handleChange("degree", "");
+                          handleChange("year", "");
                         }}
                         required
                       >
@@ -267,9 +244,7 @@ export default function Apply() {
                         <Label>Academic Year *</Label>
                         <Select
                           value={formData.year}
-                          onValueChange={(value) =>
-                            handleChange("year", value)
-                          }
+                          onValueChange={(value) => handleChange("year", value)}
                           required
                         >
                           <SelectTrigger className="mt-2">
@@ -300,5 +275,5 @@ export default function Apply() {
       </div>
       <Footer />
     </>
-  )
+  );
 }
