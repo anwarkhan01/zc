@@ -1,4 +1,3 @@
-// import { WhatsApp, Instagram, Mail, Facebook } from "lucide-react"
 import { FaWhatsapp, FaInstagram, FaFacebook } from "react-icons/fa";
 import { IoMdMail } from "react-icons/io";
 const socialLinks = [
@@ -27,36 +26,10 @@ const socialLinks = [
     color: "hover:bg-blue-600",
   },
 ];
-// const socialLinks = [
-//   {
-//     icon: WhatsApp,
-//     href: "https://wa.me/919876543210",
-//     label: "WhatsApp",
-//     color: "hover:bg-green-500",
-//   },
-//   {
-//     icon: Instagram,
-//     href: "https://instagram.com/zeanclasses",
-//     label: "Instagram",
-//     color: "hover:bg-pink-500",
-//   },
-//   {
-//     icon: Mail,
-//     href: "mailto:info@zeanclassess.com",
-//     label: "Email",
-//     color: "hover:bg-blue-500",
-//   },
-//   {
-//     icon: Facebook,
-//     href: "https://facebook.com/zeanclasses",
-//     label: "Facebook",
-//     color: "hover:bg-blue-600",
-//   },
-// ]
 
 export default function SocialBar() {
   return (
-    <div className="fixed right-0 top-1/2 -translate-y-1/2 z-40 hidden lg:block">
+    <div className="fixed right-0 bottom-24 md:bottom-40 z-40">
       <div className="flex flex-col gap-2 bg-white shadow-lg rounded-l-lg p-2 border border-gray-200">
         {socialLinks.map((link, index) => {
           const Icon = link.icon;
